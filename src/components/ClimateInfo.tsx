@@ -1,33 +1,45 @@
 const ClimateInfo = () => {
+  interface rowTypes {
+    imageSrc: string;
+    imageAlt: string;
+    label: string;
+    content: string;
+  }
+
+  const Row = ({ imageSrc, imageAlt, label, content }: rowTypes) => {
+    return (
+      <div className="flex p-3 w-72 sm:w-80 md:w-96 justify-between m-auto items-center bg-[#FFFFFF5C] rounded-2xl border border-[#FFFFFF10]">
+        <div className="flex space-x-4 items-center">
+          <div className="flex justify-center align-center p-2 w-9 h-9 bg-[#FFFFFFE5] rounded-xl">
+            <img src={imageSrc} alt={imageAlt} />
+          </div>
+          <p className="text-[#303345] text-xs text=[#303345]">{label}</p>
+        </div>
+        <p className="text-[#303345] text-xs pr-5 text=[#303345]">{content}</p>
+      </div>
+    );
+  };
+
   return (
-    <div className="sm:flex-columm w-80 m-auto space-y-2">
-      <div className="sm:flex p-3 w-80 justify-between m-auto items-center bg-white bg-opacity-3 rounded-xl border-2 border-white border-opacity-5">
-        <div className="sm:flex space-x-4 items-center">
-          <div className="sm:flex justify-center align-center p-1 w-10 h-10 bg-white bg-opacity-90 rounded-xl">
-            <img src="/src/assets/umbrella.svg" alt="umbrela icon" />
-          </div>
-          <p>Rain probability</p>
-        </div>
-        <p>3%</p>
-      </div>
-      <div className="sm:flex p-3 w-80 justify-between m-auto items-center bg-white bg-opacity-3 rounded-xl border-2 border-white border-opacity-5">
-        <div className="sm:flex space-x-4 items-center">
-          <div className="sm:flex justify-center align-center p-2 w-10 h-10 bg-white bg-opacity-90 rounded-xl">
-            <img src="/src/assets/wind.svg" alt="umbrela icon" />
-          </div>
-          <p>Wind</p>
-        </div>
-        <p>19km/h</p>
-      </div>
-      <div className="sm:flex p-3 w-80 justify-between m-auto items-center bg-white bg-opacity-3 rounded-xl border-2 border-white border-opacity-5">
-        <div className="sm:flex space-x-4 items-center">
-          <div className="sm:flex justify-center align-center p-3 w-10 h-10 bg-white bg-opacity-90 rounded-xl">
-            <img src="/src/assets/drop.svg" alt="umbrela icon" />
-          </div>
-          <p>Humidity</p>
-        </div>
-        <p>64%</p>
-      </div>
+    <div className="flex-columm w-72 sm:w-80 md:w-96 m-auto space-y-2">
+      <Row
+        imageSrc={"/src/assets/umbrella.svg"}
+        imageAlt={"umbrela icon"}
+        label={"Rain probability"}
+        content={"3%"}
+      />
+      <Row
+        imageSrc={"/src/assets/wind.svg"}
+        imageAlt={"wind icon"}
+        label={"Wind"}
+        content={"19km/h"}
+      />
+      <Row
+        imageSrc={"/src/assets/drop.svg"}
+        imageAlt={"drop icon"}
+        label={"Humidity"}
+        content={"64%"}
+      />
     </div>
   );
 };
