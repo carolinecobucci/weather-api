@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 // components
 import NavBar from "./components/NavBar.tsx";
 import City from "./components/City.tsx";
@@ -47,23 +47,45 @@ interface WeatherResponse {
 }
 
 function App() {
-  const lat = 44.34;
-  const lon = 10.99;
   const apiID = "49152378eb34f3c5a0cad3bb944c413b";
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiID}`;
   const [data, setData] = useState<WeatherResponse | null>(null);
+  const currentDate = new Date().toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (lat: number, lon: number): Promise<void> => {
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiID}`;
+      // nova api nao deu certo, ela que tem a propriedade rain
+      // const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&units=metric&appid=${apiID}`;
+
       try {
-        const response = await axios.get(url);
+        const response: AxiosResponse<WeatherResponse> = await axios.get(url);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchData();
+    const fetchLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            fetchData(latitude, longitude);
+          },
+          (error) => {
+            console.error("Error getting location:", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    };
+
+    fetchLocation();
   }, []);
 
   console.log(data);
@@ -71,9 +93,13 @@ function App() {
   return (
     <div>
       <NavBar />
-      <City />
-      <Temperature temperature={data?.main.temp} description={data?.weather[0].description} />
-      <ClimateInfo />
+      <City cityName={data?.name} country={data?.sys.country} date={currentDate} />
+      <Temperature
+        weatherIcon={data?.weather[0].icon}
+        temperature={data?.main.temp}
+        description={data?.weather[0].description}
+      />
+      <ClimateInfo wind={data?.wind.speed} humidity={data?.main.humidity} />
     </div>
   );
 }
