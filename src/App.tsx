@@ -99,7 +99,11 @@ function App() {
         temperature={data?.main.temp}
         description={data?.weather[0].description}
       />
-      <ClimateInfo wind={data?.wind.speed} humidity={data?.main.humidity} />
+      <ClimateInfo
+        feelsLike={data?.main.feels_like}
+        wind={data?.wind.speed}
+        humidity={data?.main.humidity}
+      />
     </div>
   );
 }

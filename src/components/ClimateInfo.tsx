@@ -3,11 +3,11 @@ import windIcon from "/src/assets/wind.svg";
 import dropIcon from "/src/assets/drop.svg";
 
 const ClimateInfo = ({
-  // rain,
+  feelsLike,
   wind,
   humidity,
 }: {
-  // rain: number | undefined;
+  feelsLike: number | undefined;
   wind: number | undefined;
   humidity: number | undefined;
 }) => {
@@ -41,9 +41,9 @@ const ClimateInfo = ({
       <Row
         imageSrc={umbrellaIcon}
         imageAlt={"umbrela icon"}
-        label={"Rain probability"}
-        content={3}
-        unit={"%"}
+        label={"Feels like"}
+        content={feelsLike}
+        unit={"°C"}
       />
       <Row imageSrc={windIcon} imageAlt={"wind icon"} label={"Wind"} content={wind} unit={"km/h"} />
       <Row
