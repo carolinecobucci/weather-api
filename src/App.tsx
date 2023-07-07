@@ -93,7 +93,7 @@ function App() {
   return (
     <div>
       <NavBar />
-      <City cityName={data?.name} country={data?.sys.country} date={currentDate} />
+      <City cityName={data?.name} country={data?.sys?.country} date={currentDate} />
       <Temperature
         weatherIcon={data?.weather[0].icon}
         temperature={data?.main.temp}
