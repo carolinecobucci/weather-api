@@ -1,3 +1,7 @@
+import umbrellaIcon from "/src/assets/umbrella.svg";
+import windIcon from "/src/assets/wind.svg";
+import dropIcon from "/src/assets/drop.svg";
+
 const ClimateInfo = ({
   // rain,
   wind,
@@ -35,21 +39,15 @@ const ClimateInfo = ({
   return (
     <div className="flex-columm w-72 sm:w-80 md:w-96 m-auto space-y-2">
       <Row
-        imageSrc={"/src/assets/umbrella.svg"}
+        imageSrc={umbrellaIcon}
         imageAlt={"umbrela icon"}
         label={"Rain probability"}
         content={3}
         unit={"%"}
       />
+      <Row imageSrc={windIcon} imageAlt={"wind icon"} label={"Wind"} content={wind} unit={"km/h"} />
       <Row
-        imageSrc={"/src/assets/wind.svg"}
-        imageAlt={"wind icon"}
-        label={"Wind"}
-        content={wind}
-        unit={"km/h"}
-      />
-      <Row
-        imageSrc={"/src/assets/drop.svg"}
+        imageSrc={dropIcon}
         imageAlt={"drop icon"}
         label={"Humidity"}
         content={humidity}
