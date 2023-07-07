@@ -42,9 +42,7 @@ const ClimateInfo = ({
         unit={"%"}
       />
       <Row
-        imageSrc={
-          "https://drive.google.com/file/d/1vKa1g2KB5u1cREblvaLOkIHu9cmAEq1T/view?usp=sharing"
-        }
+        imageSrc={"/src/assets/wind.svg"}
         imageAlt={"wind icon"}
         label={"Wind"}
         content={wind}

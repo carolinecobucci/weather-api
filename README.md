@@ -6,6 +6,8 @@ The goal of this challenge was to develop an interface that utilizes the OpenWea
 
 ## Preview
 
+![Logo](/src/assets/preview%20weather-api.png)
+
 ## Tech Stack
 
 - React
